@@ -1,29 +1,44 @@
-const { Schema, model } = require('mongoose');
-const commentsSchema = require('./Comment.js');
+const { Schema, model } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
+const commentsSchema = require("./Comment.js");
 
 const postSchema = new Schema(
   {
-    title: {
+    postImg: {
       type: String,
       required: true,
     },
-    text: {
+    caption: {
       type: String,
-  
     },
-	comments: [commentsSchema]
+    created_by: {
+      type: String,
+      required: true,
+    },
+    post_created_at: {
+      type: Date,
+      default: Date.now,
+      get: (timestamp) => dateFormat(timestamp),
+    },
+    comments: [commentsSchema],
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     toJSON: {
-      virtuals: true,
+      getters: true,
     },
   }
 );
 
-userSchema.virtual('commentCount').get(function () {
-  return this.comments.length;
+postSchema.virtual("likeCount").get(function () {
+  return this.likes.length;
 });
 
-const Post = model('post', postSchema);
+const Post = model("Post", postSchema);
 
 module.exports = Post;

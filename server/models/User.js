@@ -2,9 +2,6 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const dateFormat = require("../utils/dateFormat");
 
-const postSchema = require("./Post");
-const commentsSchema = require("./Comment.js");
-
 const userSchema = new Schema(
   {
     firstName: { type: String, required: true },
