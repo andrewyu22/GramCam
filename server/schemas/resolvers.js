@@ -23,6 +23,26 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in.");
     },
   },
+  Mutation: {
+      newUser: async (parent, args) => {
+          const newUser = await User.create(args);
+          const token = signToken(newUser);
+
+          return { token, newUser};
+      },
+      login: async (parent, {email, password}) => {
+          const user = await User.findOne({email});
+          if(!user) {
+            throw new AuthenticationError("Invaild user.");
+          }
+          const checkPassword = await user.isCorrectPassword(password)
+          if(!checkPassword) {
+            throw new AuthenticationError("Invalid password.");
+          }
+          const token = signToken(user)
+          return { token, user};
+      }
+  }
 };
 
 module.exports = resolvers;
