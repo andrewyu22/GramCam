@@ -1,20 +1,17 @@
 import React from "react";
+import gramlogo from "../../Image/gramlogo.png";
+import gramlogosml from "../../Image/gramlogosml.png";
+
 function Nav() {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div class="container">
         {/* Logo */}
         <a class="navbar-brand d-none d-md-none d-lg-block" href="#">
-          <img
-            src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
-            alt="instagram"
-          />
+          <img src={gramlogo} alt="instagram" />
         </a>
         <a class="navbar-brand d-lg-none" href="#">
-          <img
-            src="https://img.icons8.com/office/40/000000/instagram-new.png"
-            alt="instagram-logo"
-          />
+          <img src={gramlogosml} alt="instagram-logo" />
         </a>
         {/* Search */}
         <form class="d-flex input-group w-auto">
