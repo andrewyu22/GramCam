@@ -1,5 +1,6 @@
 import "./App.css";
 import Nav from "./components/Nav";
+import Signup from "./components/Signup";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <header className="App-header">
         <Nav></Nav>
       </header>
+      <Signup />
     </div>
   );
 }
