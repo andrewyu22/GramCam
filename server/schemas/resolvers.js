@@ -58,6 +58,19 @@ const resolvers = {
         );
         return post;
       }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    removePost: async (parent, { _id }, context) => {
+      if (context.user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { posts: _id } },
+          { new: true }
+        ).populate("posts");
+        await Post.findByIdAndDelete({ _id });
+        return updateUser;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
     },
   },
 };
