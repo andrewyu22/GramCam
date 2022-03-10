@@ -45,6 +45,20 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    addPost: async (parent, args, context) => {
+      if (context.user) {
+        const post = await Post.create({
+          ...args,
+          created_by: context.user.username,
+        });
+        const userData = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { posts: post._id } },
+          { new: true }
+        );
+        return post;
+      }
+    },
   },
 };
 
