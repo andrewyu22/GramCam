@@ -52,6 +52,7 @@ const typeDefs = gql`
       password: String!
     ): Auth
     addPost(postImg: String!, caption: String): Post
+    removePost(_id: ID!): User
   }
 `;
 
