@@ -97,7 +97,7 @@ function Nav() {
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" onClick={Auth.logout}>
                       Logout
                     </a>
                   </li>
