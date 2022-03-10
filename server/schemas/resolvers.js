@@ -22,6 +22,9 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in.");
     },
+    allPost: async (parent, args) => {
+      return Post.find({});
+    },
   },
   Mutation: {
     newUser: async (parent, args) => {
