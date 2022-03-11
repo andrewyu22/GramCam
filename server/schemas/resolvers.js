@@ -22,7 +22,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in.");
     },
-    allPost: async (parent, args) => {
+    allPosts: async (parent, args) => {
       return Post.find({});
     },
   },
