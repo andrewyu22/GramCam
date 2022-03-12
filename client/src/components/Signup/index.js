@@ -14,7 +14,6 @@ function Signup() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log([name], value);
     setUserData({ ...userData, [name]: value });
   };
 
@@ -42,12 +41,10 @@ function Signup() {
             <h4 class="modal-title w-100 font-weight-bold">SIGN UP</h4>
             <button
               type="button"
-              class="close"
-              data-dismiss="modal"
+              class="btn-close"
+              data-mdb-dismiss="modal"
               aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+            ></button>
           </div>
           <div class="modal-body mx-3">
             <div class="md-form mb-5">
