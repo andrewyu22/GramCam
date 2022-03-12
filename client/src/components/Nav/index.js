@@ -106,13 +106,22 @@ function Nav() {
             </ul>
           </div>
         ) : (
-          <a
-            href="#"
-            data-mdb-toggle="modal"
-            data-mdb-target="#modalRegisterForm"
-          >
-            Sign Up
-          </a>
+          <div>
+            <button
+              className="btn btn-primary"
+              data-mdb-toggle="modal"
+              data-mdb-target="#modalRegisterForm"
+            >
+              Sign Up
+            </button>
+            <button
+              className="btn btn-primary"
+              data-mdb-toggle="modal"
+              data-mdb-target="#modalLoginForm"
+            >
+              Login
+            </button>
+          </div>
         )}
       </div>
     </nav>

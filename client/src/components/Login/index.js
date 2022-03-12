@@ -1,27 +1,23 @@
 import React, { useState } from "react";
-import { NEW_USER } from "../../utils/mutations";
+import { LOG_IN } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
-function Signup() {
+function Login() {
   const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
     email: "",
     password: "",
   });
-  const [newUser, { error }] = useMutation(NEW_USER);
-
+  const [login, { error }] = useMutation(LOG_IN);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log([name], value);
     setUserData({ ...userData, [name]: value });
   };
-
-  const formSubmit = async (event) => {
+  const loginSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await newUser({ variables: { ...userData } });
-      Auth.login(data.newUser.token);
+      const { data } = await login({ variables: { ...userData } });
+      Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
     }
@@ -29,7 +25,7 @@ function Signup() {
   return (
     <div
       class="modal fade"
-      id="modalRegisterForm"
+      id="modalLoginForm"
       tabindex="-1"
       role="dialog"
       aria-labelledby="myModalLabel"
@@ -38,7 +34,7 @@ function Signup() {
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">SIGN UP</h4>
+            <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
             <button
               type="button"
               class="btn-close"
@@ -47,36 +43,6 @@ function Signup() {
             ></button>
           </div>
           <div class="modal-body mx-3">
-            <div class="md-form mb-5">
-              <label for="orangeForm-name">First Name:</label>
-              <input
-                type="text"
-                id="orangeForm-name"
-                class="form-control"
-                onChange={handleInputChange}
-                name="firstName"
-              />
-            </div>
-            <div class="md-form mb-5">
-              <label for="orangeForm-name">Last Name:</label>
-              <input
-                type="text"
-                id="orangeForm-name"
-                class="form-control"
-                onChange={handleInputChange}
-                name="lastName"
-              />
-            </div>
-            <div class="md-form mb-5">
-              <label for="orangeForm-name">Username:</label>
-              <input
-                type="text"
-                id="orangeForm-name"
-                class="form-control"
-                onChange={handleInputChange}
-                name="username"
-              />
-            </div>
             <div class="md-form mb-5">
               <label for="orangeForm-email">Email:</label>
               <input
@@ -87,7 +53,6 @@ function Signup() {
                 name="email"
               />
             </div>
-
             <div class="md-form mb-4">
               <label for="orangeForm-pass">Password:</label>
               <input
@@ -100,8 +65,8 @@ function Signup() {
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-deep-orange" onClick={formSubmit}>
-              Register
+            <button class="btn btn-deep-orange" onClick={loginSubmit}>
+              Login
             </button>
           </div>
         </div>
@@ -109,5 +74,4 @@ function Signup() {
     </div>
   );
 }
-
-export default Signup;
+export default Login;
