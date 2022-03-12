@@ -1,29 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Login() {
-
   return (
-    <div>
-      <h1>Hi</h1>
-      <form>
-    <div class="mb-3">
-        <label class="form-label" for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email"/> 
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password"/>
-    </div>
-    <div class="mb-3">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkRemember"/>
-            <label class="form-check-label" for="checkRemember">Remember me</label>
+    <div
+      class="modal fade"
+      id="modalLoginForm"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-mdb-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <label for="orangeForm-email">Email:</label>
+              <input
+                type="email"
+                id="orangeForm-email"
+                class="form-control"
+                name="email"
+              />
+            </div>
+            <div class="md-form mb-4">
+              <label for="orangeForm-pass">Password:</label>
+              <input
+                type="password"
+                id="orangeForm-pass"
+                class="form-control"
+                name="password"
+              />
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-deep-orange">Login</button>
+          </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+      </div>
     </div>
   );
 }
-
 export default Login;
