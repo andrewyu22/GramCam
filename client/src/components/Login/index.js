@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 
 function Login() {
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log([name], value);
+    setUserData({ ...userData, [name]: value });
+  };
   return (
     <div
       class="modal fade"
@@ -28,6 +37,7 @@ function Login() {
                 type="email"
                 id="orangeForm-email"
                 class="form-control"
+                onChange={handleInputChange}
                 name="email"
               />
             </div>
@@ -37,6 +47,7 @@ function Login() {
                 type="password"
                 id="orangeForm-pass"
                 class="form-control"
+                onChange={handleInputChange}
                 name="password"
               />
             </div>
