@@ -1,14 +1,26 @@
 import React, { useState } from "react";
-
+import { LOG_IN } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../../utils/auth";
 function Login() {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+  const [login, { error }] = useMutation(LOG_IN);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     console.log([name], value);
     setUserData({ ...userData, [name]: value });
+  };
+  const loginSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await login({ variables: { ...userData } });
+      Auth.login(data.login.token);
+    } catch (err) {
+      console.error(err);
+    }
   };
   return (
     <div
@@ -53,7 +65,9 @@ function Login() {
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-deep-orange">Login</button>
+            <button class="btn btn-deep-orange" onClick={loginSubmit}>
+              Login
+            </button>
           </div>
         </div>
       </div>
