@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 function AllPost() {
   return (
-    <div>
+    <div className="container">
       <h1>POST</h1>
     </div>
   );

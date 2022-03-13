@@ -50,58 +50,69 @@ function Addpost() {
   };
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id="addPostModal"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-center">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
+      <div className="modal-dialog modal-dialog-centered">
+        <div className="modal-content text-center">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLabel">
               Upload a Photo
             </h5>
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-mdb-dismiss="modal"
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             {selectedImg ? (
-              <img src={selectedImg} alt="previewImg" class="img-fluid mb-4" />
+              <img
+                src={selectedImg}
+                alt="previewImg"
+                className="img-fluid mb-4"
+              />
             ) : (
               <img
-                src="https://static.wikia.nocookie.net/theallever/images/0/0a/THE_Preview_logo.jpg/revision/latest/scale-to-width-down/1000?cb=20201013032038"
+                src="https://upload.wikimedia.org/wikipedia/commons/d/dc/No_Preview_image_2.png"
                 alt="previewImg"
-                class="img-fluid mb-4"
+                className="img-fluid mb-4"
               />
             )}
-            <div class="file-upload-wrapper" data-mdb-file-upload="file-upload">
-              <input type="file" class="file-upload" onChange={previewImage} />
+            <div
+              className="file-upload-wrapper"
+              data-mdb-file-upload="file-upload"
+            >
+              <input
+                type="file"
+                className="file-upload"
+                onChange={previewImage}
+              />
             </div>
-            <div class="form-outline mt-3 border">
+            <div className="form-outline mt-3 border">
               <input
                 type="text"
                 id="formControlLg"
-                class="form-control form-control-lg"
+                className="form-control form-control-lg"
                 onChange={handleInputChange}
                 value={caption}
               />
-              <label class="form-label" for="formControlLg">
+              <label className="form-label" htmlFor="formControlLg">
                 Caption
               </label>
             </div>
           </div>
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               disabled={!selectedImg}
               data-mdb-toggle="modal"
               data-mdb-target="#addPostModal"
               type="button"
-              class="btn btn-primary"
+              className="btn btn-primary"
               onClick={addPost}
             >
               Add Post
