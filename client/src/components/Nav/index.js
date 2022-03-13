@@ -46,21 +46,26 @@ function Nav() {
                 <li class="nav-item me-3 me-lg-1 active">
                   <a class="nav-link" href="#">
                     <span>
-                      <i class="fas fa-home fa-lg"></i>
+                      <i class="fas fa-home fa-2x"></i>
+                    </span>
+                  </a>
+                </li>
+                <li class="nav-item me-3 me-lg-1">
+                  <a
+                    class="nav-link"
+                    data-mdb-toggle="modal"
+                    data-mdb-target="#addPostModal"
+                    href="#"
+                  >
+                    <span>
+                      <i class="far fa-plus-square fa-2x"></i>
                     </span>
                   </a>
                 </li>
                 <li class="nav-item me-3 me-lg-1">
                   <a class="nav-link" href="#">
                     <span>
-                      <i class="far fa-plus-square fa-lg"></i>
-                    </span>
-                  </a>
-                </li>
-                <li class="nav-item me-3 me-lg-1">
-                  <a class="nav-link" href="#">
-                    <span>
-                      <i class="far fa-heart fa-lg"></i>
+                      <i class="far fa-heart fa-2x"></i>
                     </span>
                   </a>
                 </li>
@@ -77,8 +82,8 @@ function Nav() {
                   <img
                     src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
                     class="rounded-circle"
-                    height="22"
-                    alt="Portrait of a Woman"
+                    height="35"
+                    alt="ProfilePicture"
                     loading="lazy"
                   />
                 </a>
