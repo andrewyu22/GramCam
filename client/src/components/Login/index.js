@@ -69,6 +69,11 @@ function Login() {
               Login
             </button>
           </div>
+          {error && (
+            <div className="text-center mb-3 text-danger">
+              Incorrect Credentials
+            </div>
+          )}
         </div>
       </div>
     </div>
