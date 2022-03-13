@@ -10,7 +10,7 @@ import Nav from "./components/Nav";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Addpost from "./components/Addpost";
-
+import AllPost from "./pages/AllPost";
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -38,6 +38,7 @@ function App() {
         <Signup />
         <Login />
         <Addpost />
+        <AllPost />
       </div>
     </ApolloProvider>
   );
