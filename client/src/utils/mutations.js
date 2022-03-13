@@ -39,3 +39,22 @@ export const LOG_IN = gql`
     }
   }
 `;
+
+export const ADD_POST = gql`
+  mutation addPost($postImg: String!, $caption: String) {
+    addPost(postImg: $postImg, caption: $caption) {
+      _id
+      postImg
+      caption
+      created_by
+      post_created_at
+      comments {
+        commentText
+      }
+      likeCount
+      likes {
+        _id
+      }
+    }
+  }
+`;
