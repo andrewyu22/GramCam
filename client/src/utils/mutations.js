@@ -46,7 +46,11 @@ export const ADD_POST = gql`
       _id
       postImg
       caption
-      created_by
+      created_by {
+        _id
+        username
+        avatarImg
+      }
       post_created_at
       comments {
         commentText

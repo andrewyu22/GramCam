@@ -110,7 +110,6 @@ function Addpost() {
             <button
               disabled={!selectedImg}
               data-mdb-toggle="modal"
-              data-mdb-target="#addPostModal"
               type="button"
               className="btn btn-primary"
               onClick={addPost}

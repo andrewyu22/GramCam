@@ -103,6 +103,11 @@ function Signup() {
               Register
             </button>
           </div>
+          {error && (
+            <div className="text-center mb-3 text-danger">
+              Missing Information!
+            </div>
+          )}
         </div>
       </div>
     </div>
