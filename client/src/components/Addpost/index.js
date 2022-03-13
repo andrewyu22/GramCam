@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 
 function Addpost() {
+  const [selectedImg, setSelectedImg] = useState(null);
   const [caption, setCaption] = useState("");
 
   const handleInputChange = (event) => {
     setCaption(event.target.value);
     console.log(caption);
+  };
+
+  const previewImage = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onload = (readerEvent) => {
+      setSelectedImg(readerEvent.target.result);
+    };
   };
 
   return (
@@ -30,8 +41,17 @@ function Addpost() {
             ></button>
           </div>
           <div class="modal-body">
+            {selectedImg ? (
+              <img src={selectedImg} alt="previewImg" class="img-fluid mb-4" />
+            ) : (
+              <img
+                src="https://static.wikia.nocookie.net/theallever/images/0/0a/THE_Preview_logo.jpg/revision/latest/scale-to-width-down/1000?cb=20201013032038"
+                alt="previewImg"
+                class="img-fluid mb-4"
+              />
+            )}
             <div class="file-upload-wrapper" data-mdb-file-upload="file-upload">
-              <input type="file" class="file-upload" />
+              <input type="file" class="file-upload" onChange={previewImage} />
             </div>
             <div class="form-outline mt-3 border">
               <input
