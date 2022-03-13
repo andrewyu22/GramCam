@@ -23,7 +23,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in.");
     },
     allPosts: async (parent, args) => {
-      return Post.find({});
+      return Post.find({}).populate("created_by");
     },
   },
   Mutation: {
@@ -49,7 +49,7 @@ const resolvers = {
       if (context.user) {
         const post = await Post.create({
           ...args,
-          created_by: context.user.username,
+          created_by: context.user._id,
         });
         const userData = await User.findByIdAndUpdate(
           { _id: context.user._id },
