@@ -23,7 +23,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in.");
     },
     allPosts: async (parent, args) => {
-      return Post.find({}).populate("created_by");
+      return Post.find({}).populate("created_by").sort({ createdAt: -1 });
     },
   },
   Mutation: {

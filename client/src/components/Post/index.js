@@ -2,7 +2,7 @@ import React from "react";
 
 function Post() {
   return (
-    <div className="post">
+    <div style={{ maxWidth: "500px", border: "1px solid lightgray" }}>
       <div className="avatar">
         <img />
       </div>
