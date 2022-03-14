@@ -28,82 +28,86 @@ function Signup() {
   };
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id="modalRegisterForm"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="myModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header text-center">
-            <h4 class="modal-title w-100 font-weight-bold">SIGN UP</h4>
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header text-center">
+            <h4 className="modal-title w-100 font-weight-bold">SIGN UP</h4>
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-mdb-dismiss="modal"
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body mx-3">
-            <div class="md-form mb-5">
-              <label for="orangeForm-name">First Name:</label>
+          <div className="modal-body mx-3">
+            <div className="md-form mb-5">
+              <label htmlFor="signUpFirst">First Name:</label>
               <input
                 type="text"
-                id="orangeForm-name"
-                class="form-control"
+                id="signUpFirst"
+                className="form-control"
                 onChange={handleInputChange}
                 name="firstName"
               />
             </div>
-            <div class="md-form mb-5">
-              <label for="orangeForm-name">Last Name:</label>
+            <div className="md-form mb-5">
+              <label htmlFor="signUpLast">Last Name:</label>
               <input
                 type="text"
-                id="orangeForm-name"
-                class="form-control"
+                id="signUpLast"
+                className="form-control"
                 onChange={handleInputChange}
                 name="lastName"
               />
             </div>
-            <div class="md-form mb-5">
-              <label for="orangeForm-name">Username:</label>
+            <div className="md-form mb-5">
+              <label htmlFor="signUpUsername">Username:</label>
               <input
                 type="text"
-                id="orangeForm-name"
-                class="form-control"
+                id="signUpUsername"
+                className="form-control"
                 onChange={handleInputChange}
                 name="username"
               />
             </div>
-            <div class="md-form mb-5">
-              <label for="orangeForm-email">Email:</label>
+            <div className="md-form mb-5">
+              <label htmlFor="signUpEmail">Email:</label>
               <input
                 type="email"
-                id="orangeForm-email"
-                class="form-control"
+                id="signUpEmail"
+                className="form-control"
                 onChange={handleInputChange}
                 name="email"
               />
             </div>
-
-            <div class="md-form mb-4">
-              <label for="orangeForm-pass">Password:</label>
+            <div className="md-form mb-4">
+              <label htmlFor="signUpPass">Password:</label>
               <input
                 type="password"
-                id="orangeForm-pass"
-                class="form-control"
+                id="signUpPass"
+                className="form-control"
                 onChange={handleInputChange}
                 name="password"
               />
             </div>
           </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-deep-orange" onClick={formSubmit}>
+          <div className="modal-footer d-flex justify-content-center">
+            <button className="btn btn-deep-orange" onClick={formSubmit}>
               Register
             </button>
           </div>
+          {error && (
+            <div className="text-center mb-3 text-danger">
+              Missing Information!
+            </div>
+          )}
         </div>
       </div>
     </div>

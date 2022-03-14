@@ -46,11 +46,38 @@ export const ADD_POST = gql`
       _id
       postImg
       caption
-      created_by
-      post_created_at
+      created_by {
+        _id
+        username
+        avatarImg
+      }
       comments {
         commentText
       }
+      likeCount
+      likes {
+        _id
+      }
+    }
+  }
+`;
+
+export const ADD_LIKE = gql`
+  mutation addLike($_id: ID!) {
+    addLike(_id: $_id) {
+      postImg
+      likeCount
+      likes {
+        _id
+      }
+    }
+  }
+`;
+
+export const REMOVE_LIKE = gql`
+  mutation removeLike($_id: ID!) {
+    removeLike(_id: $_id) {
+      postImg
       likeCount
       likes {
         _id

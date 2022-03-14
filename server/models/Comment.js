@@ -10,16 +10,12 @@ const commentSchema = new Schema(
       type: String,
       required: true,
     },
-    comment_created_at: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
-    },
   },
   {
     toJSON: {
       getters: true,
     },
+    timestamps: true,
   }
 );
 

@@ -23,7 +23,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in.");
     },
     allPosts: async (parent, args) => {
-      return Post.find({});
+      return Post.find({}).populate("created_by").sort({ createdAt: -1 });
     },
   },
   Mutation: {
@@ -49,7 +49,7 @@ const resolvers = {
       if (context.user) {
         const post = await Post.create({
           ...args,
-          created_by: context.user.username,
+          created_by: context.user._id,
         });
         const userData = await User.findByIdAndUpdate(
           { _id: context.user._id },
@@ -69,6 +69,28 @@ const resolvers = {
         ).populate("posts");
         await Post.findByIdAndDelete({ _id });
         return updateUser;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    addLike: async (parent, { _id }, context) => {
+      if (context.user) {
+        const updatePost = await Post.findOneAndUpdate(
+          { _id: _id },
+          { $addToSet: { likes: context.user._id } },
+          { new: true }
+        );
+        return updatePost;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    removeLike: async (parent, { _id }, context) => {
+      if (context.user) {
+        const updatePost = await Post.findOneAndUpdate(
+          { _id: _id },
+          { $pull: { likes: context.user._id } },
+          { new: true }
+        );
+        return updatePost;
       }
       throw new AuthenticationError("You need to be Logged In!");
     },

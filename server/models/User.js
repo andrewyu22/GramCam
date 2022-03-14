@@ -32,16 +32,12 @@ const userSchema = new Schema(
         ref: "Post",
       },
     ],
-    created_at: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
-    },
   },
   {
     toJSON: {
       virtuals: true,
     },
+    timestamps: true,
   }
 );
 
