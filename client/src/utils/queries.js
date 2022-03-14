@@ -12,6 +12,10 @@ export const ALL_POST = gql`
         avatarImg
       }
       createdAt
+      likeCount
+      likes {
+        _id
+      }
     }
   }
 `;

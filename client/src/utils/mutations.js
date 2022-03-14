@@ -51,10 +51,33 @@ export const ADD_POST = gql`
         username
         avatarImg
       }
-      post_created_at
       comments {
         commentText
       }
+      likeCount
+      likes {
+        _id
+      }
+    }
+  }
+`;
+
+export const ADD_LIKE = gql`
+  mutation addLike($_id: ID!) {
+    addLike(_id: $_id) {
+      postImg
+      likeCount
+      likes {
+        _id
+      }
+    }
+  }
+`;
+
+export const REMOVE_LIKE = gql`
+  mutation removeLike($_id: ID!) {
+    removeLike(_id: $_id) {
+      postImg
       likeCount
       likes {
         _id
