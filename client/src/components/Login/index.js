@@ -10,7 +10,6 @@ function Login() {
   const [login, { error }] = useMutation(LOG_IN);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log([name], value);
     setUserData({ ...userData, [name]: value });
   };
   const loginSubmit = async (event) => {

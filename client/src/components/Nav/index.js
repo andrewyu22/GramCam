@@ -44,7 +44,7 @@ function Nav() {
             <ul className="navbar-nav">
               <div className="collapse navbar-collapse" id="collapseItem">
                 <li className="nav-item me-3 me-lg-1 active">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/">
                     <span>
                       <i className="fas fa-home fa-2x"></i>
                     </span>
@@ -92,13 +92,8 @@ function Nav() {
                   aria-labelledby="navbarDropdownMenuLink"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/profile">
                       My profile
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Settings
                     </a>
                   </li>
                   <li>

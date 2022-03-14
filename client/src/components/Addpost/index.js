@@ -12,7 +12,6 @@ function Addpost() {
 
   const handleInputChange = (event) => {
     setCaption(event.target.value);
-    console.log(caption);
   };
 
   const previewImage = (e) => {
