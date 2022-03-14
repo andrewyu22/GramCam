@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import { ALL_POST } from "../utils/queries";
 import Post from "../components/Post";
+
 function AllPost() {
   // const [updateDB, setUpdateDB] = useState();
   // const [postData, setPostData] = useState([]);
@@ -30,6 +31,8 @@ function AllPost() {
               avatarImg={post.created_by.avatarImg}
               postImg={post.postImg}
               caption={post.caption}
+              likeCount={post.likeCount}
+              likes={post.likes}
             />
           );
         })}
