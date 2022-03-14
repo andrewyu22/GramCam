@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import gramlogo from "../../Image/gramlogo.png";
 import gramlogosml from "../../Image/gramlogosml.png";
@@ -55,7 +56,7 @@ function Nav() {
                     className="nav-link"
                     data-mdb-toggle="modal"
                     data-mdb-target="#addPostModal"
-                    href="#"
+                    href="#!"
                   >
                     <span>
                       <i className="far fa-plus-square fa-2x"></i>

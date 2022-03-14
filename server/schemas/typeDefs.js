@@ -57,6 +57,8 @@ const typeDefs = gql`
     ): Auth
     addPost(postImg: String!, caption: String): Post
     removePost(_id: ID!): User
+    addLike(_id: ID!): Post
+    removeLike(_id: ID!): Post
   }
 `;
 

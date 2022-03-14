@@ -40,7 +40,7 @@ function Addpost() {
           setCaption("");
           setImg(null);
           setSelectedImg(null);
-          // window.location.reload();
+          window.location.reload();
         }
       );
     } catch (err) {
