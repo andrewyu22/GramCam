@@ -11,7 +11,7 @@ const typeDefs = gql`
     email: String
     avatarImg: String
     posts: [Post]
-    created_at: String
+    createdAt: String
   }
 
   type Post {
@@ -19,7 +19,6 @@ const typeDefs = gql`
     postImg: String
     caption: String
     created_by: User
-    post_created_at: String
     comments: [Comment]
     likeCount: Int
     likes: [User]
@@ -31,7 +30,8 @@ const typeDefs = gql`
     _id: ID
     commentText: String
     created_by: String
-    comment_created_at: String
+    createdAt: Date
+    updatedAt: Date
   }
 
   type Auth {

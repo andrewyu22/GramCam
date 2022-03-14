@@ -51,9 +51,6 @@ export const ADD_POST = gql`
         username
         avatarImg
       }
-      comments {
-        commentText
-      }
       likeCount
       likes {
         _id
