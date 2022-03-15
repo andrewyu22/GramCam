@@ -51,9 +51,6 @@ export const ADD_POST = gql`
         username
         avatarImg
       }
-      comments {
-        commentText
-      }
       likeCount
       likes {
         _id
@@ -81,6 +78,20 @@ export const REMOVE_LIKE = gql`
       likeCount
       likes {
         _id
+      }
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($_id: ID!, $commentText: String!) {
+    addComment(_id: $_id, commentText: $commentText) {
+      _id
+      postImg
+      comments {
+        _id
+        commentText
+        created_by
       }
     }
   }

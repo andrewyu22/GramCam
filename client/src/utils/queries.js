@@ -16,6 +16,11 @@ export const ALL_POST = gql`
       likes {
         _id
       }
+      comments {
+        _id
+        created_by
+        commentText
+      }
     }
   }
 `;

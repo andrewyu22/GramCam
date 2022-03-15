@@ -3,12 +3,15 @@ import { storage } from "../../utils/firebase";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
 import { useMutation } from "@apollo/client";
 import { ADD_POST } from "../../utils/mutations";
+import { ALL_POST } from "../../utils/queries";
 
 function Addpost() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [Img, setImg] = useState(null);
   const [caption, setCaption] = useState("");
-  const [newPost] = useMutation(ADD_POST);
+  const [newPost] = useMutation(ADD_POST, {
+    refetchQueries: [ALL_POST],
+  });
 
   const handleInputChange = (event) => {
     setCaption(event.target.value);
@@ -40,7 +43,7 @@ function Addpost() {
           setCaption("");
           setImg(null);
           setSelectedImg(null);
-          window.location.reload();
+          // window.location.reload();
         }
       );
     } catch (err) {
