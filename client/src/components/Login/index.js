@@ -32,7 +32,7 @@ function Login() {
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style={{background:"aliceblue"}}>
           <div class="modal-header text-center" style={{background:"lightsteelblue"}}>
             <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
             <button
