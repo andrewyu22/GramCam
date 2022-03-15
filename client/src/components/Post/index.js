@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ADD_LIKE, REMOVE_LIKE } from "../../utils/mutations";
+import { ADD_LIKE, REMOVE_LIKE, ADD_COMMENT } from "../../utils/mutations";
 import { ALL_POST } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
@@ -16,6 +16,7 @@ function Post(props) {
     comments,
   } = props;
   const [liked, setLiked] = useState(false);
+  const [comment, setComment] = useState("");
   useEffect(() => {
     if (Auth.loggedIn()) {
       if (likes.some((like) => like._id === Auth.getProfile().data._id)) {
@@ -27,6 +28,9 @@ function Post(props) {
     refetchQueries: [ALL_POST],
   });
   const [removeLike] = useMutation(REMOVE_LIKE, {
+    refetchQueries: [ALL_POST],
+  });
+  const [addComment] = useMutation(ADD_COMMENT, {
     refetchQueries: [ALL_POST],
   });
   const likePost = async () => {
@@ -45,7 +49,14 @@ function Post(props) {
       console.log(err);
     }
   };
-
+  const newComment = async () => {
+    try {
+      await addComment({ variables: { _id: postId, commentText: comment } });
+      setComment("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="card w-50 mt-3" id={postId}>
       <div className="card-header d-flex align-items-center">
@@ -87,12 +98,20 @@ function Post(props) {
         )}
         {caption ? (
           <p className="card-text">
-            <strong>{username}: </strong>
+            <strong>Caption: </strong>
             {caption}
           </p>
         ) : (
           ""
         )}
+        {comments.map((comment) => {
+          return (
+            <p className="card-text">
+              <strong>{comment.created_by}: </strong>
+              {comment.commentText}
+            </p>
+          );
+        })}
       </div>
       {Auth.loggedIn() ? (
         <div className="p-0 card-footer d-flex">
@@ -101,8 +120,11 @@ function Post(props) {
             id="addComments"
             className="form-control form-control-lg"
             placeholder="Add a Comment..."
+            onChange={(e) => setComment(e.target.value)}
           />
-          <button className="btn btn-success">Post</button>
+          <button className="btn btn-success" onClick={newComment}>
+            Post
+          </button>
         </div>
       ) : (
         ""

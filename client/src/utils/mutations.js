@@ -82,3 +82,17 @@ export const REMOVE_LIKE = gql`
     }
   }
 `;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($_id: ID!, $commentText: String!) {
+    addComment(_id: $_id, commentText: $commentText) {
+      _id
+      postImg
+      comments {
+        _id
+        commentText
+        created_by
+      }
+    }
+  }
+`;
