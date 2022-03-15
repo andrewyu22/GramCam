@@ -37,7 +37,7 @@ function Signup() {
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header text-center">
+          <div class="modal-header text-center" >
             <h4 class="modal-title w-100 font-weight-bold">SIGN UP</h4>
             <button
               type="button"

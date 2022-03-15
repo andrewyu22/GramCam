@@ -33,7 +33,7 @@ function Login() {
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header text-center">
+          <div class="modal-header text-center" style={{background:"lightsteelblue"}}>
             <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
             <button
               type="button"
@@ -65,7 +65,7 @@ function Login() {
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-deep-orange" onClick={loginSubmit}>
+            <button class="btn btn-primary" onClick={loginSubmit}>
               Login
             </button>
           </div>
