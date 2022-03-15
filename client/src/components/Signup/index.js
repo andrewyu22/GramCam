@@ -35,9 +35,9 @@ function Signup() {
       aria-labelledby="myModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog" role="document" >
         <div class="modal-content">
-          <div class="modal-header text-center" >
+          <div class="modal-header text-center" style={{background:"lightsteelblue"}}>
             <h4 class="modal-title w-100 font-weight-bold">SIGN UP</h4>
             <button
               type="button"
@@ -100,7 +100,7 @@ function Signup() {
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-deep-orange" onClick={formSubmit}>
+            <button class="btn btn-primary" onClick={formSubmit}>
               Register
             </button>
           </div>
