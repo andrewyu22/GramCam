@@ -11,7 +11,11 @@ const typeDefs = gql`
     email: String
     avatarImg: String
     posts: [Post]
+<<<<<<< HEAD
     createdAt: Date
+=======
+    createdAt: String
+>>>>>>> origin/develop
   }
 
   type Post {

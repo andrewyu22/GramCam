@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ADD_LIKE, REMOVE_LIKE } from "../../utils/mutations";
+import { ALL_POST } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
+
 function Post(props) {
   const {
     postId,
@@ -20,12 +22,17 @@ function Post(props) {
         setLiked(true);
       }
     }
-  }, []);
-  const [addLike] = useMutation(ADD_LIKE);
-  const [removeLike] = useMutation(REMOVE_LIKE);
+  }, [likes]);
+  const [addLike] = useMutation(ADD_LIKE, {
+    refetchQueries: [ALL_POST],
+  });
+  const [removeLike] = useMutation(REMOVE_LIKE, {
+    refetchQueries: [ALL_POST],
+  });
   const likePost = async () => {
     try {
       await addLike({ variables: { _id: postId } });
+      setLiked(true);
     } catch (err) {
       console.log(err);
     }
@@ -33,6 +40,7 @@ function Post(props) {
   const removeLikedPost = async () => {
     try {
       await removeLike({ variables: { _id: postId } });
+      setLiked(false);
     } catch (err) {
       console.log(err);
     }
@@ -62,21 +70,18 @@ function Post(props) {
       </div>
       <div className="card-body">
         {Auth.loggedIn() ? (
-          liked ? (
-            <h5 className="card-title d-flex align-items-center">
+          <h5 className="card-title d-flex align-items-center">
+            {liked ? (
               <a href="#!" onClick={removeLikedPost}>
                 <i className="fas fa-heart fa-lg"></i>
               </a>
-              <p className="m-2">{likeCount} likes</p>
-            </h5>
-          ) : (
-            <h5 className="card-title d-flex align-items-center">
+            ) : (
               <a href="#!" onClick={likePost}>
                 <i className="far fa-heart fa-lg"></i>
               </a>
-              <p className="m-2">{likeCount} likes</p>
-            </h5>
-          )
+            )}
+            <p className="m-2">{likeCount} likes</p>
+          </h5>
         ) : (
           ""
         )}
@@ -89,7 +94,19 @@ function Post(props) {
           ""
         )}
       </div>
-      <div className="card-footer">Comments</div>
+      {Auth.loggedIn() ? (
+        <div className="p-0 card-footer d-flex">
+          <input
+            type="text"
+            id="addComments"
+            className="form-control form-control-lg"
+            placeholder="Add a Comment..."
+          />
+          <button className="btn btn-success">Post</button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
