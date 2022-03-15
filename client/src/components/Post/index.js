@@ -3,8 +3,16 @@ import { ADD_LIKE, REMOVE_LIKE } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
 function Post(props) {
-  const { postId, avatarImg, username, caption, postImg, likeCount, likes } =
-    props;
+  const {
+    postId,
+    avatarImg,
+    username,
+    caption,
+    postImg,
+    likeCount,
+    likes,
+    comments,
+  } = props;
   const [liked, setLiked] = useState(false);
   useEffect(() => {
     if (Auth.loggedIn()) {
