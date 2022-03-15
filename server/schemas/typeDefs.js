@@ -11,7 +11,11 @@ const typeDefs = gql`
     email: String
     avatarImg: String
     posts: [Post]
+<<<<<<< HEAD
+    createdAt: Date
+=======
     createdAt: String
+>>>>>>> origin/develop
   }
 
   type Post {
@@ -59,6 +63,7 @@ const typeDefs = gql`
     removePost(_id: ID!): User
     addLike(_id: ID!): Post
     removeLike(_id: ID!): Post
+    addComment(_id: ID!, commentText: String!): Post
   }
 `;
 

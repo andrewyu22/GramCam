@@ -4,17 +4,8 @@ import { ALL_POST } from "../utils/queries";
 import Post from "../components/Post";
 
 function AllPost() {
-  // const [updateDB, setUpdateDB] = useState();
-  // const [postData, setPostData] = useState([]);
   const { loading, data } = useQuery(ALL_POST);
   const posts = data?.allPosts || {};
-  // useEffect(() => {
-  //   if (data) {
-  //     setPostData(data.allPosts);
-  //     console.log(postData);
-  //     setUpdateDB(false);
-  //   }
-  // }, [data]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -33,6 +24,7 @@ function AllPost() {
               caption={post.caption}
               likeCount={post.likeCount}
               likes={post.likes}
+              comments={post.comments}
             />
           );
         })}
