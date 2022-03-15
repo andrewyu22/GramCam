@@ -94,6 +94,21 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be Logged In!");
     },
+    addComment: async (parent, { _id, commentText }, context) => {
+      if (context.user) {
+        const addComment = await Post.findOneAndUpdate(
+          { _id: _id },
+          {
+            $push: {
+              comments: { commentText, created_by: context.user.username },
+            },
+          },
+          { new: true }
+        );
+        return addComment;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
   },
 };
 
