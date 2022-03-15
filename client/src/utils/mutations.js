@@ -91,7 +91,11 @@ export const ADD_COMMENT = gql`
       comments {
         _id
         commentText
-        created_by
+        comment_by {
+          _id
+          username
+          avatarImg
+        }
       }
     }
   }

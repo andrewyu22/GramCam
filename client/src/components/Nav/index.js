@@ -9,10 +9,10 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div className="container">
         {/* Logo */}
-        <a className="navbar-brand d-none d-md-none d-lg-block" href="#">
+        <a className="navbar-brand d-none d-md-none d-lg-block" href="/">
           <img src={gramlogo} alt="instagram" />
         </a>
-        <a className="navbar-brand d-lg-none" href="#">
+        <a className="navbar-brand d-lg-none" href="/">
           <img src={gramlogosml} alt="instagram-logo" />
         </a>
         {/* Search */}

@@ -23,7 +23,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in.");
     },
     allPosts: async (parent, args) => {
-      return Post.find({}).populate("created_by").sort({ createdAt: -1 });
+      return await Post.find({})
+        .populate("comments.comment_by")
+        .populate("created_by")
+        .sort({ createdAt: -1 });
     },
   },
   Mutation: {
@@ -100,7 +103,7 @@ const resolvers = {
           { _id: _id },
           {
             $push: {
-              comments: { commentText, created_by: context.user.username },
+              comments: { commentText, comment_by: context.user._id },
             },
           },
           { new: true }

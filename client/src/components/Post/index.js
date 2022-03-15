@@ -3,7 +3,7 @@ import { ADD_LIKE, REMOVE_LIKE, ADD_COMMENT } from "../../utils/mutations";
 import { ALL_POST } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
-
+import Moment from "react-moment";
 function Post(props) {
   const {
     postId,
@@ -58,7 +58,7 @@ function Post(props) {
     }
   };
   return (
-    <div className="card w-50 mt-3" id={postId}>
+    <div className="card w-100 mt-3" id={postId}>
       <div className="card-header d-flex align-items-center">
         <img
           src={avatarImg}
@@ -79,7 +79,7 @@ function Post(props) {
           alt="postImg"
         />
       </div>
-      <div className="card-body">
+      <div className="card-body p-0 ps-4">
         {Auth.loggedIn() ? (
           <h5 className="card-title d-flex align-items-center">
             {liked ? (
@@ -97,19 +97,39 @@ function Post(props) {
           ""
         )}
         {caption ? (
-          <p className="card-text">
+          <h6>
             <strong>Caption: </strong>
             {caption}
-          </p>
+          </h6>
         ) : (
           ""
         )}
+      </div>
+      <div className="container overflow-auto" style={{ maxHeight: "120px" }}>
+        <h6 className="m-1 text-center">
+          <strong>Comments: </strong>
+        </h6>
         {comments.map((comment) => {
           return (
-            <p className="card-text">
-              <strong>{comment.created_by}: </strong>
-              {comment.commentText}
-            </p>
+            <div class="card mb-2 border-top" key={comment._id}>
+              <div class="card-body p-0 p-2">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row align-items-center">
+                    <img
+                      src={comment.comment_by.avatarImg}
+                      alt="avatar"
+                      width="30"
+                      height="30"
+                    />
+                    <p class="small mb-0 ms-2">{comment.comment_by.username}</p>
+                  </div>
+                  <p className="mb-0 ms-2">{comment.commentText}</p>
+                  <Moment className="ms-5" fromNow>
+                    {comment.createdAt}
+                  </Moment>
+                </div>
+              </div>
+            </div>
           );
         })}
       </div>
@@ -117,12 +137,16 @@ function Post(props) {
         <div className="p-0 card-footer d-flex">
           <input
             type="text"
-            id="addComments"
             className="form-control form-control-lg"
             placeholder="Add a Comment..."
             onChange={(e) => setComment(e.target.value)}
+            value={comment}
           />
-          <button className="btn btn-success" onClick={newComment}>
+          <button
+            disabled={!comment.trim()}
+            className="btn btn-success"
+            onClick={newComment}
+          >
             Post
           </button>
         </div>
