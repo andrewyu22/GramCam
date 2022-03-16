@@ -59,6 +59,18 @@ export const ADD_POST = gql`
   }
 `;
 
+export const REMOVE_POST = gql`
+  mutation removePost($_id: ID!) {
+    removePost(_id: $_id) {
+      username
+      posts {
+        _id
+        postImg
+      }
+    }
+  }
+`;
+
 export const ADD_LIKE = gql`
   mutation addLike($_id: ID!) {
     addLike(_id: $_id) {
@@ -91,8 +103,24 @@ export const ADD_COMMENT = gql`
       comments {
         _id
         commentText
-        created_by
+        comment_by {
+          _id
+          username
+          avatarImg
+        }
       }
+    }
+  }
+`;
+
+export const UPDATE_PROFILE = gql`
+  mutation updateAvatar($avatarImg: String!) {
+    updateAvatar(avatarImg: $avatarImg) {
+      _id
+      username
+      avatarImg
+      firstName
+      lastName
     }
   }
 `;

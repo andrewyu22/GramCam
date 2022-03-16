@@ -13,7 +13,7 @@ import Login from "./components/Login";
 import Addpost from "./components/Addpost";
 import AllPost from "./pages/AllPost";
 import Profile from "./pages/Profile";
-
+import Auth from "./utils/auth";
 const httpLink = createHttpLink({
   uri: "/graphql",
 });
@@ -46,7 +46,19 @@ function App() {
           <Addpost />
           <Routes>
             <Route path="/" element={<AllPost />} />
-            <Route path="/profile" element={<Profile />} />
+            {Auth.loggedIn() ? (
+              <Route path="/profile" element={<Profile />} />
+            ) : (
+              <Route
+                path="/profile"
+                element={
+                  <h1 className="text-center text-danger mt-5">
+                    You need to be Logged In!
+                  </h1>
+                }
+              />
+            )}
+
             <Route
               path="*"
               element={

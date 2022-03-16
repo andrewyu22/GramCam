@@ -31,8 +31,11 @@ function Login() {
       aria-hidden="true"
     >
       <div className="modal-dialog" role="document">
-        <div className="modal-content">
-          <div className="modal-header text-center">
+        <div className="modal-content" style={{ background: "aliceblue" }}>
+          <div
+            className="modal-header text-center"
+            style={{ background: "lightsteelblue" }}
+          >
             <h4 className="modal-title w-100 font-weight-bold">LOGIN</h4>
             <button
               type="button"
@@ -64,7 +67,7 @@ function Login() {
             </div>
           </div>
           <div className="modal-footer d-flex justify-content-center">
-            <button className="btn btn-deep-orange" onClick={loginSubmit}>
+            <button className="btn btn-primary" onClick={loginSubmit}>
               Login
             </button>
           </div>

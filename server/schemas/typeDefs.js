@@ -29,7 +29,7 @@ const typeDefs = gql`
   type Comment {
     _id: ID
     commentText: String
-    created_by: String
+    comment_by: User
     createdAt: Date
     updatedAt: Date
   }
@@ -41,9 +41,8 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    user(username: String!): User
+    user(username: String): User
     allPosts: [Post]
-    post(_id: ID!): Post
   }
 
   type Mutation {
@@ -60,6 +59,7 @@ const typeDefs = gql`
     addLike(_id: ID!): Post
     removeLike(_id: ID!): Post
     addComment(_id: ID!, commentText: String!): Post
+    updateAvatar(avatarImg: String!): User
   }
 `;
 

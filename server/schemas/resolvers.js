@@ -23,7 +23,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in.");
     },
     allPosts: async (parent, args) => {
-      return Post.find({}).populate("created_by").sort({ createdAt: -1 });
+      return await Post.find({})
+        .populate("comments.comment_by")
+        .populate("created_by")
+        .sort({ createdAt: -1 });
     },
   },
   Mutation: {
@@ -51,9 +54,9 @@ const resolvers = {
           ...args,
           created_by: context.user._id,
         });
-        const userData = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { posts: post._id } },
+          { $addToSet: { posts: post._id } },
           { new: true }
         );
         return post;
@@ -66,7 +69,7 @@ const resolvers = {
           { _id: context.user._id },
           { $pull: { posts: _id } },
           { new: true }
-        ).populate("posts");
+        );
         await Post.findByIdAndDelete({ _id });
         return updateUser;
       }
@@ -100,12 +103,26 @@ const resolvers = {
           { _id: _id },
           {
             $push: {
-              comments: { commentText, created_by: context.user.username },
+              comments: {
+                $each: [{ commentText, comment_by: context.user._id }],
+                $sort: { createdAt: -1 },
+              },
             },
           },
           { new: true }
         );
         return addComment;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    updateAvatar: async (parent, args, context) => {
+      if (context.user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { avatarImg: args.avatarImg },
+          { new: true }
+        );
+        return updateUser;
       }
       throw new AuthenticationError("You need to be Logged In!");
     },

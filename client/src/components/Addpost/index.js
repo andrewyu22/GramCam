@@ -3,14 +3,14 @@ import { storage } from "../../utils/firebase";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
 import { useMutation } from "@apollo/client";
 import { ADD_POST } from "../../utils/mutations";
-import { ALL_POST } from "../../utils/queries";
+import { ALL_POST, GET_USER } from "../../utils/queries";
+import { v4 as uuidv4 } from "uuid";
 
 function Addpost() {
   const [selectedImg, setSelectedImg] = useState(null);
-  const [Img, setImg] = useState(null);
   const [caption, setCaption] = useState("");
   const [newPost] = useMutation(ADD_POST, {
-    refetchQueries: [ALL_POST],
+    refetchQueries: [ALL_POST, GET_USER],
   });
 
   const handleInputChange = (event) => {
@@ -21,7 +21,6 @@ function Addpost() {
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
-      setImg(e.target.files[0]);
     }
     reader.onload = (readerEvent) => {
       setSelectedImg(readerEvent.target.result);
@@ -29,19 +28,16 @@ function Addpost() {
   };
 
   const addPost = async () => {
-    const uploadImg = ref(storage, `/image/${Img.name}`);
+    const uploadImg = ref(storage, `/image/${uuidv4()}`);
     try {
       await uploadString(uploadImg, selectedImg, "data_url").then(
         async (snapshot) => {
           const downloadUrl = await getDownloadURL(uploadImg);
-          console.log(downloadUrl);
-
           await newPost({
             variables: { postImg: downloadUrl, caption: caption },
           });
 
           setCaption("");
-          setImg(null);
           setSelectedImg(null);
           // window.location.reload();
         }

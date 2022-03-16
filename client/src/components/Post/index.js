@@ -3,7 +3,7 @@ import { ADD_LIKE, REMOVE_LIKE, ADD_COMMENT } from "../../utils/mutations";
 import { ALL_POST } from "../../utils/queries";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";
-
+import Moment from "react-moment";
 function Post(props) {
   const {
     postId,
@@ -27,6 +27,7 @@ function Post(props) {
   const [addLike] = useMutation(ADD_LIKE, {
     refetchQueries: [ALL_POST],
   });
+
   const [removeLike] = useMutation(REMOVE_LIKE, {
     refetchQueries: [ALL_POST],
   });
@@ -58,7 +59,7 @@ function Post(props) {
     }
   };
   return (
-    <div className="card w-50 mt-3" id={postId}>
+    <div className="card w-100 mt-3" id={postId}>
       <div className="card-header d-flex align-items-center">
         <img
           src={avatarImg}
@@ -70,7 +71,7 @@ function Post(props) {
         <h3 className="ms-2">{username}</h3>
       </div>
       <div
-        className="bg-image hover-overlay ripple"
+        className="bg-image hover-overlay ripple text-center"
         data-mdb-ripple-color="light"
       >
         <img
@@ -79,7 +80,7 @@ function Post(props) {
           alt="postImg"
         />
       </div>
-      <div className="card-body">
+      <div className="card-body p-0 ps-4">
         {Auth.loggedIn() ? (
           <h5 className="card-title d-flex align-items-center">
             {liked ? (
@@ -97,19 +98,46 @@ function Post(props) {
           ""
         )}
         {caption ? (
-          <p className="card-text">
+          <h6>
             <strong>Caption: </strong>
             {caption}
-          </p>
+          </h6>
         ) : (
           ""
         )}
+      </div>
+      <div className="container overflow-auto" style={{ maxHeight: "140px" }}>
+        <h6 className="m-1 text-center">
+          <strong>Comments: </strong>
+        </h6>
         {comments.map((comment) => {
           return (
-            <p className="card-text">
-              <strong>{comment.created_by}: </strong>
-              {comment.commentText}
-            </p>
+            <div className="card mb-2 border-top" key={comment._id}>
+              <div className="card-body p-0 p-2">
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex flex-row align-items-center">
+                    <img
+                      src={comment.comment_by.avatarImg}
+                      alt="avatar"
+                      className="rounded-circle"
+                      width="30"
+                      height="30"
+                    />
+                    <p className="small mb-0 ms-2">
+                      {comment.comment_by.username}
+                    </p>
+                  </div>
+                  <p className="mb-0 ms-2">
+                    {comment.commentText.length > 40
+                      ? comment.commentText.substring(0, 40) + "..."
+                      : comment.commentText}
+                  </p>
+                  <Moment className="ms-5" fromNow>
+                    {comment.createdAt}
+                  </Moment>
+                </div>
+              </div>
+            </div>
           );
         })}
       </div>
@@ -117,12 +145,16 @@ function Post(props) {
         <div className="p-0 card-footer d-flex">
           <input
             type="text"
-            id="addComments"
             className="form-control form-control-lg"
             placeholder="Add a Comment..."
             onChange={(e) => setComment(e.target.value)}
+            value={comment}
           />
-          <button className="btn btn-success" onClick={newComment}>
+          <button
+            disabled={!comment.trim()}
+            className="btn btn-success"
+            onClick={newComment}
+          >
             Post
           </button>
         </div>

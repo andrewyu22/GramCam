@@ -5,10 +5,12 @@ import Post from "../components/Post";
 
 function AllPost() {
   const { loading, data } = useQuery(ALL_POST);
-  const posts = data?.allPosts || {};
+  const posts = data?.allPosts || [];
 
   if (loading) {
-    return <div>Loading...</div>;
+    <div className="spinner-border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>;
   }
   return (
     <div className="container mb-5">
