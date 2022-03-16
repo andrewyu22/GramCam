@@ -46,19 +46,7 @@ function App() {
           <Addpost />
           <Routes>
             <Route path="/" element={<AllPost />} />
-            {Auth.loggedIn() ? (
-              <Route path="/profile" element={<Profile />} />
-            ) : (
-              <Route
-                path="/profile"
-                element={
-                  <h1 className="text-center text-danger mt-5">
-                    You need to be Logged In!
-                  </h1>
-                }
-              />
-            )}
-
+            <Route path="/profile" element={<Profile />} />
             <Route
               path="*"
               element={
