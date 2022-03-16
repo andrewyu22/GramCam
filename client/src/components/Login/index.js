@@ -10,7 +10,6 @@ function Login() {
   const [login, { error }] = useMutation(LOG_IN);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log([name], value);
     setUserData({ ...userData, [name]: value });
   };
   const loginSubmit = async (event) => {
@@ -24,9 +23,9 @@ function Login() {
   };
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id="modalLoginForm"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="myModalLabel"
       aria-hidden="true"
@@ -37,28 +36,28 @@ function Login() {
             <h4 class="modal-title w-100 font-weight-bold">LOGIN</h4>
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-mdb-dismiss="modal"
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body mx-3">
-            <div class="md-form mb-5">
-              <label for="orangeForm-email">Email:</label>
+          <div className="modal-body mx-3">
+            <div className="md-form mb-5">
+              <label htmlFor="loginEmail">Email:</label>
               <input
                 type="email"
-                id="orangeForm-email"
-                class="form-control"
+                id="loginEmail"
+                className="form-control"
                 onChange={handleInputChange}
                 name="email"
               />
             </div>
-            <div class="md-form mb-4">
-              <label for="orangeForm-pass">Password:</label>
+            <div className="md-form mb-4">
+              <label htmlFor="loginPass">Password:</label>
               <input
                 type="password"
-                id="orangeForm-pass"
-                class="form-control"
+                id="loginPass"
+                className="form-control"
                 onChange={handleInputChange}
                 name="password"
               />
@@ -66,9 +65,15 @@ function Login() {
           </div>
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-primary" onClick={loginSubmit}>
+
               Login
             </button>
           </div>
+          {error && (
+            <div className="text-center mb-3 text-danger">
+              Incorrect Credentials
+            </div>
+          )}
         </div>
       </div>
     </div>

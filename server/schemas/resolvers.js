@@ -23,7 +23,10 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in.");
     },
     allPosts: async (parent, args) => {
-      return Post.find({});
+      return await Post.find({})
+        .populate("comments.comment_by")
+        .populate("created_by")
+        .sort({ createdAt: -1 });
     },
   },
   Mutation: {
@@ -49,7 +52,7 @@ const resolvers = {
       if (context.user) {
         const post = await Post.create({
           ...args,
-          created_by: context.user.username,
+          created_by: context.user._id,
         });
         const userData = await User.findByIdAndUpdate(
           { _id: context.user._id },
@@ -68,6 +71,57 @@ const resolvers = {
           { new: true }
         ).populate("posts");
         await Post.findByIdAndDelete({ _id });
+        return updateUser;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    addLike: async (parent, { _id }, context) => {
+      if (context.user) {
+        const updatePost = await Post.findOneAndUpdate(
+          { _id: _id },
+          { $addToSet: { likes: context.user._id } },
+          { new: true }
+        );
+        return updatePost;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    removeLike: async (parent, { _id }, context) => {
+      if (context.user) {
+        const updatePost = await Post.findOneAndUpdate(
+          { _id: _id },
+          { $pull: { likes: context.user._id } },
+          { new: true }
+        );
+        return updatePost;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    addComment: async (parent, { _id, commentText }, context) => {
+      if (context.user) {
+        const addComment = await Post.findOneAndUpdate(
+          { _id: _id },
+          {
+            $push: {
+              comments: {
+                $each: [{ commentText, comment_by: context.user._id }],
+                $sort: { createdAt: -1 },
+              },
+            },
+          },
+          { new: true }
+        );
+        return addComment;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
+    updateAvatar: async (parent, args, context) => {
+      if (context.user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { avatarImg: args.avatarImg },
+          { new: true }
+        );
         return updateUser;
       }
       throw new AuthenticationError("You need to be Logged In!");
