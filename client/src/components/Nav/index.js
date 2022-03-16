@@ -3,6 +3,7 @@ import React from "react";
 import gramlogo from "../../Image/gramlogo.png";
 import gramlogosml from "../../Image/gramlogosml.png";
 import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
 
 function Nav() {
   return (
@@ -92,11 +93,13 @@ function Nav() {
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <li>
-                    <a className="dropdown-item" href="/profile">
-                      My profile
-                    </a>
-                  </li>
+                  <Link to="/profile">
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        My profile
+                      </a>
+                    </li>
+                  </Link>
                   <li>
                     <a className="dropdown-item" onClick={Auth.logout}>
                       Logout
