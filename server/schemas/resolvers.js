@@ -54,9 +54,9 @@ const resolvers = {
           ...args,
           created_by: context.user._id,
         });
-        const userData = await User.findByIdAndUpdate(
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { posts: post._id } },
+          { $addToSet: { posts: post._id } },
           { new: true }
         );
         return post;
@@ -69,7 +69,7 @@ const resolvers = {
           { _id: context.user._id },
           { $pull: { posts: _id } },
           { new: true }
-        ).populate("posts");
+        );
         await Post.findByIdAndDelete({ _id });
         return updateUser;
       }

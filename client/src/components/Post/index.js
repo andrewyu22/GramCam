@@ -119,6 +119,7 @@ function Post(props) {
                     <img
                       src={comment.comment_by.avatarImg}
                       alt="avatar"
+                      className="rounded-circle"
                       width="30"
                       height="30"
                     />

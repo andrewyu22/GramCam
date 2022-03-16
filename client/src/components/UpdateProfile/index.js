@@ -3,12 +3,12 @@ import { storage } from "../../utils/firebase";
 import { ref, getDownloadURL, uploadString } from "firebase/storage";
 import { useMutation } from "@apollo/client";
 import { UPDATE_PROFILE } from "../../utils/mutations";
-import { ALL_POST, GET_USER } from "../../utils/queries";
+import { GET_USER } from "../../utils/queries";
 
 function EditProfile({ avatar }) {
   const [currentImg, setCurrentImg] = useState("");
   const [updateUser] = useMutation(UPDATE_PROFILE, {
-    refetchQueries: [ALL_POST, GET_USER],
+    refetchQueries: [GET_USER],
   });
   const newImage = (e) => {
     const reader = new FileReader();

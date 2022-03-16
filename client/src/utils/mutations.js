@@ -59,6 +59,18 @@ export const ADD_POST = gql`
   }
 `;
 
+export const REMOVE_POST = gql`
+  mutation removePost($_id: ID!) {
+    removePost(_id: $_id) {
+      username
+      posts {
+        _id
+        postImg
+      }
+    }
+  }
+`;
+
 export const ADD_LIKE = gql`
   mutation addLike($_id: ID!) {
     addLike(_id: $_id) {

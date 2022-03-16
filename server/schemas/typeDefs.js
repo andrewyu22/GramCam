@@ -43,7 +43,6 @@ const typeDefs = gql`
     me: User
     user(username: String): User
     allPosts: [Post]
-    post(_id: ID!): Post
   }
 
   type Mutation {
