@@ -16,7 +16,7 @@ function Nav() {
           <img src={gramlogosml} alt="instagram-logo" />
         </a>
         {/* Search */}
-        <form className="d-flex input-group w-auto">
+        <form className="d-flex input-group w-auto flex-shrink-1">
           <span className="input-group-text border-0" id="search-addon">
             <i className="fas fa-search"></i>
           </span>
@@ -63,13 +63,13 @@ function Nav() {
                     </span>
                   </a>
                 </li>
-                <li className="nav-item me-3 me-lg-1">
+                {/* <li className="nav-item me-3 me-lg-1">
                   <a className="nav-link" href="#">
                     <span>
                       <i className="far fa-heart fa-2x"></i>
                     </span>
                   </a>
-                </li>
+                </li> */}
               </div>
               <li className="nav-item dropdown">
                 <a

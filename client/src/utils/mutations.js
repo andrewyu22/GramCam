@@ -100,3 +100,15 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const UPDATE_PROFILE = gql`
+  mutation updateAvatar($avatarImg: String!) {
+    updateAvatar(avatarImg: $avatarImg) {
+      _id
+      username
+      avatarImg
+      firstName
+      lastName
+    }
+  }
+`;

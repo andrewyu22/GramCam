@@ -60,6 +60,7 @@ const typeDefs = gql`
     addLike(_id: ID!): Post
     removeLike(_id: ID!): Post
     addComment(_id: ID!, commentText: String!): Post
+    updateAvatar(avatarImg: String!): User
   }
 `;
 

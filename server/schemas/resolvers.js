@@ -115,6 +115,17 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be Logged In!");
     },
+    updateAvatar: async (parent, args, context) => {
+      if (context.user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { avatarImg: args.avatarImg },
+          { new: true }
+        );
+        return updateUser;
+      }
+      throw new AuthenticationError("You need to be Logged In!");
+    },
   },
 };
 
