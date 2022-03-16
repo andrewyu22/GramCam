@@ -29,3 +29,21 @@ export const ALL_POST = gql`
     }
   }
 `;
+
+export const GET_USER = gql`
+  query user($username: String) {
+    user(username: $username) {
+      _id
+      avatarImg
+      username
+      firstName
+      lastName
+      posts {
+        _id
+        postImg
+        caption
+        likeCount
+      }
+    }
+  }
+`;

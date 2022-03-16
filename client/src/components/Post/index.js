@@ -27,6 +27,7 @@ function Post(props) {
   const [addLike] = useMutation(ADD_LIKE, {
     refetchQueries: [ALL_POST],
   });
+
   const [removeLike] = useMutation(REMOVE_LIKE, {
     refetchQueries: [ALL_POST],
   });
@@ -70,7 +71,7 @@ function Post(props) {
         <h3 className="ms-2">{username}</h3>
       </div>
       <div
-        className="bg-image hover-overlay ripple"
+        className="bg-image hover-overlay ripple text-center"
         data-mdb-ripple-color="light"
       >
         <img
@@ -105,25 +106,31 @@ function Post(props) {
           ""
         )}
       </div>
-      <div className="container overflow-auto" style={{ maxHeight: "120px" }}>
+      <div className="container overflow-auto" style={{ maxHeight: "140px" }}>
         <h6 className="m-1 text-center">
           <strong>Comments: </strong>
         </h6>
         {comments.map((comment) => {
           return (
-            <div class="card mb-2 border-top" key={comment._id}>
-              <div class="card-body p-0 p-2">
-                <div class="d-flex justify-content-between">
-                  <div class="d-flex flex-row align-items-center">
+            <div className="card mb-2 border-top" key={comment._id}>
+              <div className="card-body p-0 p-2">
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex flex-row align-items-center">
                     <img
                       src={comment.comment_by.avatarImg}
                       alt="avatar"
                       width="30"
                       height="30"
                     />
-                    <p class="small mb-0 ms-2">{comment.comment_by.username}</p>
+                    <p className="small mb-0 ms-2">
+                      {comment.comment_by.username}
+                    </p>
                   </div>
-                  <p className="mb-0 ms-2">{comment.commentText}</p>
+                  <p className="mb-0 ms-2">
+                    {comment.commentText.length > 40
+                      ? comment.commentText.substring(0, 40) + "..."
+                      : comment.commentText}
+                  </p>
                   <Moment className="ms-5" fromNow>
                     {comment.createdAt}
                   </Moment>

@@ -103,7 +103,10 @@ const resolvers = {
           { _id: _id },
           {
             $push: {
-              comments: { commentText, comment_by: context.user._id },
+              comments: {
+                $each: [{ commentText, comment_by: context.user._id }],
+                $sort: { createdAt: -1 },
+              },
             },
           },
           { new: true }
