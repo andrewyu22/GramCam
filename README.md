@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# GramCam
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+GramCam is an application that provides a user with the ability to post, comment, and like photos with other users.
 
-In the project directory, you can run:
+### User Story
 
-### `npm start`
+- As a user, I want to be able to use a social platform to add, like, and comment Posts
+- When you are NOT logged in, you should just be able to see the Post, caption and comments
+- When you are logged in, you should be able to add comments, add a new post, like/dislike post.
+- When you click on "My Profile", you should be able to see all the posts that you have created and delete the post
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Repo: https://github.com/andrewyu22/GramCam
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Link: https://gramcam1.herokuapp.com/
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Table of Contents
 
-### `npm run build`
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Credits](#credits)
+- [Resources](#resources)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. "npm i" to install all required dependency on root folder
+2. "npm run develop" to run the code on root folder
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### HomePage - Not Login
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Home](/client/src/Image/allpost.JPG)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### HomePage - Logged In
 
-## Learn More
+![Home-Loggedin](/client/src/Image/gramcam.JPG)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Add a new post
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Select an Image and add a caption and click "Add Post"
 
-### Code Splitting
+![newpost](/client/src/Image//newpost.JPG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Change Profile Picture
 
-### Analyzing the Bundle Size
+Choose a new image, by click "Choose File", Once you select the image you want to upload, click "Submit"
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![changeProfilePicutre](/client/src/Image/update.JPG)
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+No Licenses for this project!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+No contribution information for this project!
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Tests
+
+No Test for this project!
+
+---
+
+## Credits
+
+- [Andrew Yu](https://www.github.com/andrewyu22)
+- [Brady Libby](https://github.com/wyattlibby)
+- [Mario Villaquiran](https://github.com/mariovillaquiran)
+
+---
+
+## Resources
+
+### Front End
+
+- HTML
+- Material & Design Bootstrap v5
+- React.js
+- Firebase (Google Storage Only)
+- UUID (Random ID to upload photo to Google Storage)
+
+### Back End
+
+- Node.js
+- Javascript
+- [express.js](https://www.npmjs.com/package/express)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+- [apollo-server-express](https://www.npmjs.com/package/apollo-server-express)
+- [graphql](https://www.npmjs.com/package/graphql)
+- [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken)
+- [Mongoose](https://www.npmjs.com/package/mongoose)

@@ -93,13 +93,11 @@ function Nav() {
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <Link to="/profile">
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        My profile
-                      </a>
-                    </li>
-                  </Link>
+                  <li>
+                    <Link to="/profile" className="dropdown-item">
+                      My profile
+                    </Link>
+                  </li>
                   <li>
                     <a className="dropdown-item" onClick={Auth.logout}>
                       Logout

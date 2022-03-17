@@ -13,7 +13,7 @@ import Login from "./components/Login";
 import Addpost from "./components/Addpost";
 import AllPost from "./pages/AllPost";
 import Profile from "./pages/Profile";
-import Auth from "./utils/auth";
+
 const httpLink = createHttpLink({
   uri: "/graphql",
 });

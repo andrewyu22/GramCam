@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GET_USER, ALL_POST } from "../utils/queries";
+import { GET_USER } from "../utils/queries";
 import { REMOVE_POST } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
